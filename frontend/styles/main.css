@@ -290,4 +290,17 @@ div[data-testid="stElementContainer"]:has(.le-empty)+div[data-testid="stElementC
   .le-topbar{font-size:.7rem;padding-bottom:.65rem}
   [data-testid="stHorizontalBlock"]:has(.le-topbar) .stButton>button{padding-inline:.45rem;font-size:.72rem;white-space:nowrap}
   .le-document-wrap{max-width:100%}
+
+  /* Keep the landing actions compact and balanced beneath the brand on phones. */
+  [data-testid="stHorizontalBlock"]:has(.le-brand):has(.st-key-landing_workspace) .le-brand{padding-bottom:.75rem}
+  [data-testid="stHorizontalBlock"]:has(.st-key-landing_workspace):has(.st-key-landing_start){gap:.5rem!important}
+  .st-key-landing_workspace [data-testid="stButton"],
+  .st-key-landing_start [data-testid="stButton"]{display:flex;justify-content:center}
+  .st-key-landing_workspace [data-testid="stButton"]>button,
+  .st-key-landing_start [data-testid="stButton"]>button{
+    width:min(100%,9.5rem)!important;max-width:9.5rem!important;min-width:0!important;
+    height:2.5rem!important;min-height:2.5rem!important;padding:.4rem .65rem!important;
+    border-radius:.6rem!important;text-align:center;justify-content:center
+  }
+  .le-hero{padding:1rem 0 2rem}
 }
