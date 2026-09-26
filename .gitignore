@@ -1,0 +1,14 @@
+node_modules/
+dist/
+__pycache__/
+.venv/
+.env
+*.pyc
+
+.env.*
+!.env.example
+venv/
+.pytest_cache/
+.streamlit/secrets.toml
+build/
+*.tsbuildinfo
