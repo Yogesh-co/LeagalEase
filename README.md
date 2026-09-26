@@ -499,8 +499,7 @@ Install dependencies:
 Start FastAPI:
 
 ```powershell
-.\.venv\Scripts\python.exe -m uvicorn app.main:app `
-  --app-dir backend `
+.\.venv\Scripts\python.exe -m uvicorn backend.main:app `
   --host 127.0.0.1 `
   --port 8001 `
   --reload
@@ -716,7 +715,7 @@ $ python -m venv .venv
 
 $ pip install -r backend/requirements.txt
 
-$ uvicorn app.main:app --reload
+$ uvicorn backend.main:app --reload --port 8001
 
 ✓ Backend started
 ✓ AI provider configured
@@ -874,7 +873,7 @@ PDF
 Backend:
 
 ```powershell
-uvicorn app.main:app --app-dir backend --reload
+uvicorn backend.main:app --host 127.0.0.1 --port 8001 --reload
 ```
 
 Frontend:
