@@ -43,7 +43,7 @@ st.set_page_config(
     page_title="LegalEase — Your AI Legal Document Workspace",
     page_icon="L",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="auto",
 )
 
 
