@@ -160,19 +160,19 @@ Powered by `python-docx` and `ReportLab`.
 
 ### 🏠 Dashboard
 
-<img src="docs/screenshots/dashboard.png" width="90%" alt="LegalEase Dashboard">
+<img src="dashboard.png" width="90%" alt="LegalEase Dashboard">
 
 <br><br>
 
 ### ✍️ Document Workspace
 
-<img src="docs/screenshots/editor.png" width="90%" alt="LegalEase Editor">
+<img src="editor.png" width="90%" alt="LegalEase Editor">
 
 <br><br>
 
 ### 🧠 AI Assistant
 
-<img src="docs/screenshots/assistant.png" width="90%" alt="LegalEase AI Assistant">
+<img src="assistant.png" width="90%" alt="LegalEase AI Assistant">
 
 </div>
 
