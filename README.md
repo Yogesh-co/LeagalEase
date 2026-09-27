@@ -418,6 +418,36 @@ __pycache__/
 
 # 💻 Local Development
 
+## Railway single-service deployment
+
+The root `Dockerfile` builds one Railway service containing FastAPI, Streamlit, and Nginx. Railway sends its public `$PORT` to Nginx; `/` is proxied to Streamlit on port 8501 and `/api/` is proxied to the canonical `backend.main:app` on port 8001. API paths retain their `/api` prefix.
+
+In Railway:
+
+1. Select **New Project** and deploy from GitHub.
+2. Choose `Yogesh-co/LeagalEase` and branch `main`.
+3. Keep the deployment as one service; Railway builds the root `Dockerfile`.
+4. Add the AI provider variables below under the service's **Variables** settings.
+5. Deploy, open **Networking**, and select **Generate Domain**.
+6. Check `/` and `/api/settings/ai-provider` on the generated domain.
+
+Set the provider credentials and model settings you use:
+
+```env
+AI_PROVIDER=groq
+GROQ_API_KEY=                 # required when AI_PROVIDER=groq
+GROQ_MODEL=openai/gpt-oss-120b
+GEMINI_API_KEY=               # required when AI_PROVIDER=gemini
+GEMINI_MODEL=gemini-3.8-flash
+API_BASE_URL=http://127.0.0.1:8001
+```
+
+`API_BASE_URL` is an internal container address used by Streamlit's Python client. Do not set it to the public Railway domain. `FRONTEND_ORIGIN` is optional and only needed for cross-origin browser clients; same-origin Streamlit traffic does not need CORS. Once deployed, open **Networking**, generate a domain, and visit `/` and `/api/settings/ai-provider` on that domain.
+
+## Local development
+
+Install the unified runtime dependencies with `python -m pip install -r requirements.txt`. Run FastAPI on port 8001 and Streamlit on port 8501 in separate terminals. `API_BASE_URL` defaults to `http://127.0.0.1:8001` for this local setup.
+
 ## 1. Install Python 3.12
 
 Windows:
