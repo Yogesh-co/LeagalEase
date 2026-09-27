@@ -420,16 +420,17 @@ __pycache__/
 
 ## Railway single-service deployment
 
-The root `Dockerfile` builds one Railway service containing FastAPI, Streamlit, and Nginx. Railway sends its public `$PORT` to Nginx; `/` is proxied to Streamlit on port 8501 and `/api/` is proxied to the canonical `backend.main:app` on port 8001. API paths retain their `/api` prefix.
+The root `Dockerfile` builds one Railway service containing FastAPI, Streamlit, and Nginx. Nginx is the only exposed container listener and listens on port `8080`; `/` is proxied to Streamlit on `127.0.0.1:8501` and `/api/` is proxied to the canonical `backend.main:app` on `127.0.0.1:8001`. API paths retain their `/api` prefix.
 
 In Railway:
 
 1. Select **New Project** and deploy from GitHub.
 2. Choose `Yogesh-co/LeagalEase` and branch `main`.
 3. Keep the deployment as one service; Railway builds the root `Dockerfile`.
-4. Add the AI provider variables below under the service's **Variables** settings.
+4. Add `PORT=8080` and the AI provider variables below under the service's **Variables** settings.
 5. Deploy, open **Networking**, and select **Generate Domain**.
-6. Check `/` and `/api/settings/ai-provider` on the generated domain.
+6. Edit the generated domain's target port to `8080` if Railway did not select it automatically.
+7. Check `/` and `/api/settings/ai-provider` on the generated domain.
 
 Set the provider credentials and model settings you use:
 
@@ -440,9 +441,10 @@ GROQ_MODEL=openai/gpt-oss-120b
 GEMINI_API_KEY=               # required when AI_PROVIDER=gemini
 GEMINI_MODEL=gemini-3.8-flash
 API_BASE_URL=http://127.0.0.1:8001
+PORT=8080
 ```
 
-`API_BASE_URL` is an internal container address used by Streamlit's Python client. Do not set it to the public Railway domain. `FRONTEND_ORIGIN` is optional and only needed for cross-origin browser clients; same-origin Streamlit traffic does not need CORS. Once deployed, open **Networking**, generate a domain, and visit `/` and `/api/settings/ai-provider` on that domain.
+`API_BASE_URL` is an internal container address used by Streamlit's Python client. Do not set it to the public Railway domain. The public domain target port and Railway's `PORT` variable must both be `8080`; ports `8001` and `8501` are internal only. `FRONTEND_ORIGIN` is optional and only needed for cross-origin browser clients; same-origin Streamlit traffic does not need CORS. Once deployed, open **Networking**, generate a domain, set its target port to `8080`, and visit `/` and `/api/settings/ai-provider` on that domain.
 
 ## Local development
 

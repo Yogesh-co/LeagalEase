@@ -7,7 +7,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 WORKDIR /app
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends nginx gettext-base \
+    && apt-get install -y --no-install-recommends nginx \
     && rm -rf /var/lib/apt/lists/* \
     && rm -f /etc/nginx/sites-enabled/default
 
@@ -22,6 +22,6 @@ COPY start.sh ./start.sh
 
 RUN chmod +x /app/start.sh
 
-EXPOSE 8501 8001
+EXPOSE 8080
 
 ENTRYPOINT ["/app/start.sh"]
